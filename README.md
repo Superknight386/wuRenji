@@ -8,5 +8,7 @@ How to use:
 
 To test, add weight path to shellscript.
 
+Github repo: https://github.com/VielyNi/wuRenji
+
 URL to get weights and logs:
 

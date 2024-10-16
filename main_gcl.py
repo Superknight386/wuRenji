@@ -250,9 +250,9 @@ class Processor():
         self.output_device = output_device
         Model = import_class(self.arg.model)
         shutil.copy2(inspect.getfile(Model), self.arg.work_dir)
-        print(Model)
+        # print(Model)
         self.model = Model(**self.arg.model_args).cuda(output_device)
-        print(self.model)
+        # print(self.model)
         self.loss = nn.CrossEntropyLoss().cuda(output_device)
         #if TORCH_VERSION == '1.7.0':
             #self.loss = nn.CrossEntropyLoss().cuda(output_device)

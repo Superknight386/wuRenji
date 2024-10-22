@@ -10,5 +10,5 @@ To test, add weight path to shellscript.
 
 Github repo: https://github.com/VielyNi/wuRenji
 
-URL to get weights and logs:
+URL to get weights and logs in log or work_dir
 

@@ -1,0 +1,290 @@
+[ Tue Oct 15 11:57:30 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 11:58:40 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 11:58:41 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 56, 'test_batch_size': 56, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 11:58:41 2024 ] Training epoch: 1
+[ Tue Oct 15 12:00:06 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 12:00:06 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 56, 'test_batch_size': 56, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 12:00:06 2024 ] Training epoch: 1
+[ Tue Oct 15 12:00:19 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 12:00:20 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 32, 'test_batch_size': 32, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 12:00:20 2024 ] Training epoch: 1
+[ Tue Oct 15 12:09:40 2024 ] 	ACC:0.0000.
+[ Tue Oct 15 12:09:40 2024 ] 	Mean training loss: 4.8764.
+[ Tue Oct 15 12:09:40 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 12:09:40 2024 ] Eval epoch: 1
+[ Tue Oct 15 12:10:34 2024 ] Training epoch: 2
+[ Tue Oct 15 12:19:54 2024 ] 	ACC:0.1250.
+[ Tue Oct 15 12:19:54 2024 ] 	Mean training loss: 3.9888.
+[ Tue Oct 15 12:19:54 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 12:19:54 2024 ] Eval epoch: 2
+[ Tue Oct 15 12:20:49 2024 ] Training epoch: 3
+[ Tue Oct 15 12:30:14 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 12:30:14 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 32, 'test_batch_size': 32, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 12:30:14 2024 ] Training epoch: 1
+[ Tue Oct 15 12:30:53 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 12:30:54 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 32, 'test_batch_size': 32, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 12:30:54 2024 ] Training epoch: 1
+[ Tue Oct 15 12:33:16 2024 ] using warm up, epoch: 5
+[ Tue Oct 15 12:33:17 2024 ] Parameters:
+{'work_dir': 'work_dir/train_mixformer_joint', 'model_saved_name': 'runs/train_mixformer_joint', 'config': './config/train_mixformer_joint.yaml', 'phase': 'train', 'save_score': True, 'seed': 777, 'log_interval': 100, 'save_interval': 1, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder.Feeder', 'num_worker': 32, 'train_feeder_args': {'data_path': './data/train_joint.npy', 'label_path': './data/train_label.npy', 'debug': False, 'random_choose': False, 'random_shift': False, 'random_move': False, 'window_size': -1, 'normalization': False}, 'test_feeder_args': {'data_path': './data/test_B_joint.npy', 'label_path': './data/test_B_label.npy'}, 'model': 'model.ske_mixf.Model', 'model_args': {'num_class': 155, 'num_point': 17, 'num_person': 2, 'graph': 'graph.uav_former.Graph', 'graph_args': {'labeling_mode': 'spatial'}}, 'weights': None, 'label_smoothing': 0.0, 'ignore_weights': [], 'base_lr': 0.1, 'step': [30, 40], 'device': [0], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 32, 'test_batch_size': 32, 'start_epoch': 0, 'num_epoch': 50, 'weight_decay': 0.0001, 'only_train_part': False, 'only_train_epoch': 60, 'warm_up_epoch': 5}
+
+[ Tue Oct 15 12:33:17 2024 ] Training epoch: 1
+[ Tue Oct 15 12:42:31 2024 ] 	ACC:0.0000.
+[ Tue Oct 15 12:42:31 2024 ] 	Mean training loss: 4.8764.
+[ Tue Oct 15 12:42:31 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 12:42:31 2024 ] Eval epoch: 1
+[ Tue Oct 15 12:43:23 2024 ] Training epoch: 2
+[ Tue Oct 15 12:52:29 2024 ] 	ACC:0.1250.
+[ Tue Oct 15 12:52:29 2024 ] 	Mean training loss: 3.9888.
+[ Tue Oct 15 12:52:29 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 12:52:29 2024 ] Eval epoch: 2
+[ Tue Oct 15 12:53:22 2024 ] Training epoch: 3
+[ Tue Oct 15 13:02:21 2024 ] 	ACC:0.1562.
+[ Tue Oct 15 13:02:21 2024 ] 	Mean training loss: 3.5069.
+[ Tue Oct 15 13:02:21 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:02:21 2024 ] Eval epoch: 3
+[ Tue Oct 15 13:03:12 2024 ] Training epoch: 4
+[ Tue Oct 15 13:12:33 2024 ] 	ACC:0.3125.
+[ Tue Oct 15 13:12:33 2024 ] 	Mean training loss: 3.1729.
+[ Tue Oct 15 13:12:33 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:12:33 2024 ] Eval epoch: 4
+[ Tue Oct 15 13:13:32 2024 ] Training epoch: 5
+[ Tue Oct 15 13:22:52 2024 ] 	ACC:0.1250.
+[ Tue Oct 15 13:22:52 2024 ] 	Mean training loss: 2.9573.
+[ Tue Oct 15 13:22:52 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:22:52 2024 ] Eval epoch: 5
+[ Tue Oct 15 13:23:50 2024 ] Training epoch: 6
+[ Tue Oct 15 13:33:18 2024 ] 	ACC:0.3750.
+[ Tue Oct 15 13:33:18 2024 ] 	Mean training loss: 2.7313.
+[ Tue Oct 15 13:33:18 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:33:18 2024 ] Eval epoch: 6
+[ Tue Oct 15 13:34:18 2024 ] Training epoch: 7
+[ Tue Oct 15 13:43:42 2024 ] 	ACC:0.3125.
+[ Tue Oct 15 13:43:42 2024 ] 	Mean training loss: 2.5691.
+[ Tue Oct 15 13:43:42 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:43:42 2024 ] Eval epoch: 7
+[ Tue Oct 15 13:44:42 2024 ] Training epoch: 8
+[ Tue Oct 15 13:54:06 2024 ] 	ACC:0.3438.
+[ Tue Oct 15 13:54:06 2024 ] 	Mean training loss: 2.4522.
+[ Tue Oct 15 13:54:06 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 13:54:06 2024 ] Eval epoch: 8
+[ Tue Oct 15 13:55:07 2024 ] Training epoch: 9
+[ Tue Oct 15 14:04:33 2024 ] 	ACC:0.2188.
+[ Tue Oct 15 14:04:33 2024 ] 	Mean training loss: 2.3246.
+[ Tue Oct 15 14:04:33 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:04:33 2024 ] Eval epoch: 9
+[ Tue Oct 15 14:05:32 2024 ] Training epoch: 10
+[ Tue Oct 15 14:14:58 2024 ] 	ACC:0.3438.
+[ Tue Oct 15 14:14:58 2024 ] 	Mean training loss: 2.2334.
+[ Tue Oct 15 14:14:58 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:14:58 2024 ] Eval epoch: 10
+[ Tue Oct 15 14:15:56 2024 ] Training epoch: 11
+[ Tue Oct 15 14:25:23 2024 ] 	ACC:0.5000.
+[ Tue Oct 15 14:25:23 2024 ] 	Mean training loss: 2.1543.
+[ Tue Oct 15 14:25:23 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:25:23 2024 ] Eval epoch: 11
+[ Tue Oct 15 14:26:24 2024 ] Training epoch: 12
+[ Tue Oct 15 14:35:45 2024 ] 	ACC:0.3438.
+[ Tue Oct 15 14:35:45 2024 ] 	Mean training loss: 2.0823.
+[ Tue Oct 15 14:35:45 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:35:45 2024 ] Eval epoch: 12
+[ Tue Oct 15 14:36:44 2024 ] Training epoch: 13
+[ Tue Oct 15 14:46:04 2024 ] 	ACC:0.5000.
+[ Tue Oct 15 14:46:04 2024 ] 	Mean training loss: 2.0159.
+[ Tue Oct 15 14:46:04 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:46:05 2024 ] Eval epoch: 13
+[ Tue Oct 15 14:47:06 2024 ] Training epoch: 14
+[ Tue Oct 15 14:56:29 2024 ] 	ACC:0.5000.
+[ Tue Oct 15 14:56:29 2024 ] 	Mean training loss: 1.9423.
+[ Tue Oct 15 14:56:29 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 14:56:29 2024 ] Eval epoch: 14
+[ Tue Oct 15 14:57:26 2024 ] Training epoch: 15
+[ Tue Oct 15 15:07:01 2024 ] 	ACC:0.5625.
+[ Tue Oct 15 15:07:01 2024 ] 	Mean training loss: 1.8929.
+[ Tue Oct 15 15:07:01 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:07:01 2024 ] Eval epoch: 15
+[ Tue Oct 15 15:08:00 2024 ] Training epoch: 16
+[ Tue Oct 15 15:17:25 2024 ] 	ACC:0.4375.
+[ Tue Oct 15 15:17:25 2024 ] 	Mean training loss: 1.8635.
+[ Tue Oct 15 15:17:25 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:17:25 2024 ] Eval epoch: 16
+[ Tue Oct 15 15:18:23 2024 ] Training epoch: 17
+[ Tue Oct 15 15:27:47 2024 ] 	ACC:0.4688.
+[ Tue Oct 15 15:27:47 2024 ] 	Mean training loss: 1.8071.
+[ Tue Oct 15 15:27:47 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:27:47 2024 ] Eval epoch: 17
+[ Tue Oct 15 15:28:48 2024 ] Training epoch: 18
+[ Tue Oct 15 15:38:14 2024 ] 	ACC:0.4688.
+[ Tue Oct 15 15:38:14 2024 ] 	Mean training loss: 1.7719.
+[ Tue Oct 15 15:38:14 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:38:14 2024 ] Eval epoch: 18
+[ Tue Oct 15 15:39:14 2024 ] Training epoch: 19
+[ Tue Oct 15 15:48:39 2024 ] 	ACC:0.5000.
+[ Tue Oct 15 15:48:39 2024 ] 	Mean training loss: 1.7250.
+[ Tue Oct 15 15:48:39 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:48:39 2024 ] Eval epoch: 19
+[ Tue Oct 15 15:49:37 2024 ] Training epoch: 20
+[ Tue Oct 15 15:59:08 2024 ] 	ACC:0.4062.
+[ Tue Oct 15 15:59:08 2024 ] 	Mean training loss: 1.6837.
+[ Tue Oct 15 15:59:08 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 15:59:08 2024 ] Eval epoch: 20
+[ Tue Oct 15 16:00:05 2024 ] Training epoch: 21
+[ Tue Oct 15 16:09:16 2024 ] 	ACC:0.6562.
+[ Tue Oct 15 16:09:16 2024 ] 	Mean training loss: 1.6571.
+[ Tue Oct 15 16:09:16 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 16:09:16 2024 ] Eval epoch: 21
+[ Tue Oct 15 16:10:08 2024 ] Training epoch: 22
+[ Tue Oct 15 16:19:10 2024 ] 	ACC:0.4375.
+[ Tue Oct 15 16:19:10 2024 ] 	Mean training loss: 1.6212.
+[ Tue Oct 15 16:19:10 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 16:19:11 2024 ] Eval epoch: 22
+[ Tue Oct 15 16:20:03 2024 ] Training epoch: 23
+[ Tue Oct 15 16:29:22 2024 ] 	ACC:0.4688.
+[ Tue Oct 15 16:29:22 2024 ] 	Mean training loss: 1.5882.
+[ Tue Oct 15 16:29:22 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 16:29:22 2024 ] Eval epoch: 23
+[ Tue Oct 15 16:30:23 2024 ] Training epoch: 24
+[ Tue Oct 15 16:39:46 2024 ] 	ACC:0.4375.
+[ Tue Oct 15 16:39:46 2024 ] 	Mean training loss: 1.5633.
+[ Tue Oct 15 16:39:46 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 16:39:46 2024 ] Eval epoch: 24
+[ Tue Oct 15 16:40:43 2024 ] Training epoch: 25
+[ Tue Oct 15 16:50:05 2024 ] 	ACC:0.6875.
+[ Tue Oct 15 16:50:05 2024 ] 	Mean training loss: 1.5429.
+[ Tue Oct 15 16:50:05 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 16:50:05 2024 ] Eval epoch: 25
+[ Tue Oct 15 16:50:57 2024 ] Training epoch: 26
+[ Tue Oct 15 17:00:01 2024 ] 	ACC:0.4375.
+[ Tue Oct 15 17:00:01 2024 ] 	Mean training loss: 1.5009.
+[ Tue Oct 15 17:00:01 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:00:01 2024 ] Eval epoch: 26
+[ Tue Oct 15 17:00:53 2024 ] Training epoch: 27
+[ Tue Oct 15 17:09:54 2024 ] 	ACC:0.6250.
+[ Tue Oct 15 17:09:54 2024 ] 	Mean training loss: 1.4679.
+[ Tue Oct 15 17:09:54 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:09:55 2024 ] Eval epoch: 27
+[ Tue Oct 15 17:10:47 2024 ] Training epoch: 28
+[ Tue Oct 15 17:19:45 2024 ] 	ACC:0.5312.
+[ Tue Oct 15 17:19:45 2024 ] 	Mean training loss: 1.4404.
+[ Tue Oct 15 17:19:45 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:19:45 2024 ] Eval epoch: 28
+[ Tue Oct 15 17:20:36 2024 ] Training epoch: 29
+[ Tue Oct 15 17:29:26 2024 ] 	ACC:0.5938.
+[ Tue Oct 15 17:29:26 2024 ] 	Mean training loss: 1.4183.
+[ Tue Oct 15 17:29:26 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:29:26 2024 ] Eval epoch: 29
+[ Tue Oct 15 17:30:17 2024 ] Training epoch: 30
+[ Tue Oct 15 17:39:08 2024 ] 	ACC:0.5938.
+[ Tue Oct 15 17:39:08 2024 ] 	Mean training loss: 1.3887.
+[ Tue Oct 15 17:39:08 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:39:08 2024 ] Eval epoch: 30
+[ Tue Oct 15 17:39:59 2024 ] Training epoch: 31
+[ Tue Oct 15 17:48:45 2024 ] 	ACC:0.7812.
+[ Tue Oct 15 17:48:45 2024 ] 	Mean training loss: 0.9339.
+[ Tue Oct 15 17:48:45 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:48:45 2024 ] Eval epoch: 31
+[ Tue Oct 15 17:49:36 2024 ] Training epoch: 32
+[ Tue Oct 15 17:58:22 2024 ] 	ACC:0.8750.
+[ Tue Oct 15 17:58:22 2024 ] 	Mean training loss: 0.7858.
+[ Tue Oct 15 17:58:22 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 17:58:22 2024 ] Eval epoch: 32
+[ Tue Oct 15 17:59:13 2024 ] Training epoch: 33
+[ Tue Oct 15 18:07:59 2024 ] 	ACC:0.6562.
+[ Tue Oct 15 18:07:59 2024 ] 	Mean training loss: 0.7147.
+[ Tue Oct 15 18:07:59 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:07:59 2024 ] Eval epoch: 33
+[ Tue Oct 15 18:08:50 2024 ] Training epoch: 34
+[ Tue Oct 15 18:17:37 2024 ] 	ACC:0.8750.
+[ Tue Oct 15 18:17:37 2024 ] 	Mean training loss: 0.6626.
+[ Tue Oct 15 18:17:37 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:17:37 2024 ] Eval epoch: 34
+[ Tue Oct 15 18:18:27 2024 ] Training epoch: 35
+[ Tue Oct 15 18:27:12 2024 ] 	ACC:0.7812.
+[ Tue Oct 15 18:27:12 2024 ] 	Mean training loss: 0.6186.
+[ Tue Oct 15 18:27:12 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:27:13 2024 ] Eval epoch: 35
+[ Tue Oct 15 18:28:03 2024 ] Training epoch: 36
+[ Tue Oct 15 18:36:50 2024 ] 	ACC:0.8438.
+[ Tue Oct 15 18:36:50 2024 ] 	Mean training loss: 0.5702.
+[ Tue Oct 15 18:36:50 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:36:50 2024 ] Eval epoch: 36
+[ Tue Oct 15 18:37:41 2024 ] Training epoch: 37
+[ Tue Oct 15 18:46:27 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 18:46:27 2024 ] 	Mean training loss: 0.5160.
+[ Tue Oct 15 18:46:27 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:46:27 2024 ] Eval epoch: 37
+[ Tue Oct 15 18:47:18 2024 ] Training epoch: 38
+[ Tue Oct 15 18:56:05 2024 ] 	ACC:0.7812.
+[ Tue Oct 15 18:56:05 2024 ] 	Mean training loss: 0.4858.
+[ Tue Oct 15 18:56:05 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 18:56:05 2024 ] Eval epoch: 38
+[ Tue Oct 15 18:56:56 2024 ] Training epoch: 39
+[ Tue Oct 15 19:05:42 2024 ] 	ACC:0.9688.
+[ Tue Oct 15 19:05:42 2024 ] 	Mean training loss: 0.4478.
+[ Tue Oct 15 19:05:42 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:05:42 2024 ] Eval epoch: 39
+[ Tue Oct 15 19:06:34 2024 ] Training epoch: 40
+[ Tue Oct 15 19:15:20 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 19:15:20 2024 ] 	Mean training loss: 0.4140.
+[ Tue Oct 15 19:15:20 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:15:20 2024 ] Eval epoch: 40
+[ Tue Oct 15 19:16:11 2024 ] Training epoch: 41
+[ Tue Oct 15 19:24:57 2024 ] 	ACC:0.8438.
+[ Tue Oct 15 19:24:57 2024 ] 	Mean training loss: 0.3236.
+[ Tue Oct 15 19:24:57 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:24:57 2024 ] Eval epoch: 41
+[ Tue Oct 15 19:25:47 2024 ] Training epoch: 42
+[ Tue Oct 15 19:34:34 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 19:34:34 2024 ] 	Mean training loss: 0.3055.
+[ Tue Oct 15 19:34:34 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:34:34 2024 ] Eval epoch: 42
+[ Tue Oct 15 19:35:25 2024 ] Training epoch: 43
+[ Tue Oct 15 19:44:11 2024 ] 	ACC:1.0000.
+[ Tue Oct 15 19:44:11 2024 ] 	Mean training loss: 0.2938.
+[ Tue Oct 15 19:44:11 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:44:11 2024 ] Eval epoch: 43
+[ Tue Oct 15 19:45:02 2024 ] Training epoch: 44
+[ Tue Oct 15 19:53:49 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 19:53:49 2024 ] 	Mean training loss: 0.2870.
+[ Tue Oct 15 19:53:49 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 19:53:49 2024 ] Eval epoch: 44
+[ Tue Oct 15 19:54:40 2024 ] Training epoch: 45
+[ Tue Oct 15 20:03:28 2024 ] 	ACC:0.9375.
+[ Tue Oct 15 20:03:28 2024 ] 	Mean training loss: 0.2788.
+[ Tue Oct 15 20:03:28 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:03:28 2024 ] Eval epoch: 45
+[ Tue Oct 15 20:04:19 2024 ] Training epoch: 46
+[ Tue Oct 15 20:13:05 2024 ] 	ACC:0.8750.
+[ Tue Oct 15 20:13:05 2024 ] 	Mean training loss: 0.2689.
+[ Tue Oct 15 20:13:05 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:13:05 2024 ] Eval epoch: 46
+[ Tue Oct 15 20:13:55 2024 ] Training epoch: 47
+[ Tue Oct 15 20:22:41 2024 ] 	ACC:0.9375.
+[ Tue Oct 15 20:22:41 2024 ] 	Mean training loss: 0.2699.
+[ Tue Oct 15 20:22:41 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:22:41 2024 ] Eval epoch: 47
+[ Tue Oct 15 20:23:32 2024 ] Training epoch: 48
+[ Tue Oct 15 20:32:19 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 20:32:19 2024 ] 	Mean training loss: 0.2630.
+[ Tue Oct 15 20:32:19 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:32:19 2024 ] Eval epoch: 48
+[ Tue Oct 15 20:33:10 2024 ] Training epoch: 49
+[ Tue Oct 15 20:41:56 2024 ] 	ACC:0.9688.
+[ Tue Oct 15 20:41:56 2024 ] 	Mean training loss: 0.2559.
+[ Tue Oct 15 20:41:56 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:41:56 2024 ] Eval epoch: 49
+[ Tue Oct 15 20:42:46 2024 ] Training epoch: 50
+[ Tue Oct 15 20:51:33 2024 ] 	ACC:0.9062.
+[ Tue Oct 15 20:51:33 2024 ] 	Mean training loss: 0.2545.
+[ Tue Oct 15 20:51:33 2024 ] 	Time consumption: [Data]01%, [Network]99%
+[ Tue Oct 15 20:51:33 2024 ] Eval epoch: 50

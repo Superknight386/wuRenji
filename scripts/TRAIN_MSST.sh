@@ -1,5 +1,5 @@
 #!/bin/bash
-RECORD=msst_b
+RECORD=msst_jm
 WORKDIR=work_dir/$RECORD
 MODELNAME=runs/$RECORD
 

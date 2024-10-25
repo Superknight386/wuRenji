@@ -1,5 +1,6 @@
 import math
 import pdb
+import torch.nn.functional as F
 
 import numpy as np
 import torch
@@ -48,7 +49,7 @@ def Get_fft(x):
     '''
     return: amplitude and phase
     '''
-    x = torch.fft.fft(x, dim=2)
+    x = torch.fft.fft(x, dim=-1)
     # x = torch.view_as_real(x)[:,:, :-1]
     # x = rearrange(x,'n c t v d -> n c (t d) v')
     # return x
@@ -128,8 +129,6 @@ class VAtt(nn.Module):
         
         return self.norm(x_vf), self.norm(x_vt)
 
-
-
 class Att(nn.Module):
     def __init__(self,hidden_dim,edim):
         super(Att, self).__init__()
@@ -178,107 +177,193 @@ class Att(nn.Module):
         x_f = x_f_f + x_f_t 
         return self.norm(x_t), self.norm(x_f)
 
+class msstMoudel(nn.Module):
+    def __init__(self, inchannel, outchannel1, outchannel3, outchannel5, outchannel7, outchannel11, stride=(1, 1)):
+        super(msstMoudel, self).__init__()
+        inplace = True
+
+        self.conv1x1 = nn.Sequential(
+            nn.Conv2d(in_channels=inchannel, out_channels=outchannel1, kernel_size=(1, 1), stride=stride,
+                      padding=(0, 0)),
+            nn.BatchNorm2d(outchannel1, affine=True),
+            nn.ReLU(inplace))
+        self.conv3x3 = nn.Sequential(
+            nn.Conv2d(in_channels=inchannel, out_channels=outchannel3, kernel_size=(1, 1), stride=(1, 1),
+                      padding=(0, 0)),
+            nn.BatchNorm2d(outchannel3, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel3, out_channels=outchannel3, kernel_size=(3, 3), stride=stride,
+                      padding=(1, 1)),
+            nn.BatchNorm2d(outchannel3, affine=True),
+            nn.ReLU(inplace))
+
+        self.conv5x5 = nn.Sequential(
+            nn.Conv2d(in_channels=inchannel, out_channels=outchannel5, kernel_size=(1, 1), stride=(1, 1),
+                      padding=(0, 0)),
+            nn.BatchNorm2d(outchannel5, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel5, out_channels=outchannel5, kernel_size=(5, 1), stride=stride,
+                      padding=(2, 0)),
+            nn.BatchNorm2d(outchannel5, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel5, out_channels=outchannel5, kernel_size=(1, 5), stride=(1, 1),
+                      padding=(0, 2)),
+            nn.BatchNorm2d(outchannel5, affine=True),
+            nn.ReLU(inplace))
+
+        self.conv7x7 = nn.Sequential(
+            nn.Conv2d(in_channels=inchannel, out_channels=outchannel7, kernel_size=(1, 1), stride=(1, 1),
+                      padding=(0, 0)),
+            nn.BatchNorm2d(outchannel7, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel7, out_channels=outchannel7, kernel_size=(7, 1), stride=stride,
+                      padding=(3, 0)),
+            nn.BatchNorm2d(outchannel7, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel7, out_channels=outchannel7, kernel_size=(1, 7), stride=(1, 1),
+                      padding=(0, 3)),
+            nn.BatchNorm2d(outchannel7, affine=True),
+            nn.ReLU(inplace))
+
+        self.conv11 = nn.Sequential(
+            nn.Conv2d(in_channels=inchannel, out_channels=outchannel11, kernel_size=(1, 1), stride=(1, 1),
+                      padding=(0, 0)),
+            nn.BatchNorm2d(outchannel11, affine=True),
+            nn.ReLU(inplace),
+            nn.Conv2d(in_channels=outchannel11, out_channels=outchannel11, kernel_size=(11, 1), stride=stride,
+                      padding=(5, 0)),
+            nn.BatchNorm2d(outchannel11, affine=True),
+            nn.ReLU(inplace))
+            # nn.Conv2d(in_channels=outchannel11, out_channels=outchannel11, kernel_size=(1, 11), stride=stride,
+            #           padding=(0, 5)),
+            # nn.BatchNorm2d(outchannel11, affine=True),
+            # nn.ReLU(inplace))
+
+    def forward(self, input):
+        output1 = self.conv1x1(input)
+        # print('o1',output1.size())
+        output3 = self.conv3x3(input)
+        # print('o3', output3.size())
+        output5 = self.conv5x5(input)
+        # print('o5', output5.size())
+        output7 = self.conv7x7(input)
+
+        # print('o7', output7.size())
+        output11 = self.conv11(input)
+        output = torch.cat([output1, output3, output5, output7, output11], 1)
+        return output
+
+class MSSTNet(nn.Module):
+
+    def __init__(self, num_class=1000, dropout=0.8):
+        super(MSSTNet, self).__init__()
+        inplace = True
+        self.dropout = dropout
+
+        self.avgpool = nn.Sequential(
+            nn.AvgPool2d(kernel_size=(3, 3), stride=(1, 2), padding=(1, 1), ceil_mode=False, count_include_pad=True),
+            nn.BatchNorm2d(416, affine=True),
+            nn.ReLU(inplace))
+        self.avgpool2 = nn.Sequential(
+            nn.AvgPool2d(kernel_size=(3, 3), stride=(1, 2), padding=(1, 1), ceil_mode=False, count_include_pad=True),
+            nn.BatchNorm2d(672, affine=True),
+            nn.ReLU(inplace))
+
+        self.m1 = msstMoudel(inchannel=3, outchannel1=32, outchannel3=48, outchannel5=48, outchannel7=48,
+                              outchannel11=48, stride=(2, 1))
+        self.m2 = msstMoudel(inchannel=224, outchannel1=32, outchannel3=64, outchannel5=64, outchannel7=64,
+                              outchannel11=64, stride=(2, 1))
+        self.m3 = msstMoudel(inchannel=288, outchannel1=32, outchannel3=96, outchannel5=96, outchannel7=96,
+                              outchannel11=96, stride=(2, 1))
+        self.m4 = msstMoudel(inchannel=416, outchannel1=128, outchannel3=128, outchannel5=128, outchannel7=128,
+                              outchannel11=128, stride=(2, 1))
+        self.m5 = msstMoudel(inchannel=640, outchannel1=32, outchannel3=160, outchannel5=160, outchannel7=160,
+                              outchannel11=160, stride=(2, 1))
+        self.m6 = msstMoudel(inchannel=672, outchannel1=192, outchannel3=192, outchannel5=192, outchannel7=192,
+                              outchannel11=192, stride=(1, 1))
+        self.m7 = msstMoudel(inchannel=960, outchannel1=256, outchannel3=256, outchannel5=256, outchannel7=256,
+                              outchannel11=256, stride=(1, 1))
+        self.dropout = nn.Dropout(p=self.dropout)
+        self.last_linear = nn.Linear(1280, num_class)
+
+    def features(self, input):
+        m1out = self.m1(input)
+        m2out = self.m2(m1out)
+        m3out = self.m3(m2out)
+        m3poolout = self.avgpool(m3out)
+        m4out = self.m4(m3poolout)
+        m5out = self.m5(m4out)
+        m5poolout = self.avgpool2(m5out)
+        m6out = self.m6(m5poolout)
+        m7out = self.m7(m6out)
+        # print(m7out.size())
+        return m7out
+
+    def logits(self, features):
+        fea_base = features
+        adaptiveAvgPoolWidth = (features.shape[2], features.shape[3])
+        x = F.avg_pool2d(features, kernel_size=adaptiveAvgPoolWidth)
+        x_base = x.view(x.size(0), -1)
+        x = self.dropout(x_base)
+        x = self.last_linear(x)
+        return fea_base, x
+
+    def forward(self, input):
+        x = self.features(input)
+        x_base, x = self.logits(x)
+        return x_base, x
 
 class Model(nn.Module):
-    def __init__(self, num_class=60, num_point=25, num_person=2, graph=None, graph_args=dict(), in_channels=3,
-                 drop_out=0, adaptive=True):
-        super(Model,self).__init__()
-        self.hidden_dim = 256
+    def __init__(self, num_class=155, dropout=0.8):
+        super(Model, self).__init__()
+        self.dropout = dropout
+        self.num_class = num_class
+        self.model = MSSTNet(num_class=self.num_class, dropout=self.dropout)
+        self.model_p = MSSTNet(num_class=self.num_class, dropout=self.dropout)
+        self.model_a = MSSTNet(num_class=self.num_class, dropout=self.dropout)
         
-        self.Patchf = nn.Sequential(
-            nn.Conv2d(6, self.hidden_dim, kernel_size=(15,1), stride=(15,1)),
-            nn.BatchNorm2d(self.hidden_dim),
-            nn.ReLU(),
-        )
-        self.Patcht = nn.Sequential(
-            nn.Conv2d(6, self.hidden_dim, kernel_size=(15,1), stride=(15,1)),
-            nn.BatchNorm2d(self.hidden_dim),
-            nn.ReLU(),
-        )
-        
-        # self.Proj = nn.Sequential(
-        #     nn.Conv2d(12, 12, kernel_size=1, stride=1,groups=2),
-        #     nn.BatchNorm2d(12),
-        #     nn.ReLU(),
-        #     nn.Conv2d(12, 12, kernel_size=1, stride=1),
-        #     nn.BatchNorm2d(12),
-        #     nn.ReLU(),
-        # )
-        # self.Multi = Multi(3,6,6)
-        
-        # self.Temp= nn.Sequential(
-        #     nn.Conv2d(24, self.hidden_dim, kernel_size=(6,1), stride=(6,1), padding=(0,0)),
-        #     nn.BatchNorm2d(self.hidden_dim),
-        #     nn.ReLU(),
-        # )
-        self.Trans = nn.ModuleList([Att(20,self.hidden_dim) for _ in range(12)])
-        self.VTrans = nn.ModuleList([VAtt() for _ in range(12)])
         self.MLP = nn.Sequential(
-            nn.Linear(num_point*6*600, 300),
-            nn.Tanh(),
-            nn.Linear(300, num_class),
+            nn.Linear(num_class*3, num_class*6),
+            nn.ReLU(),
+            nn.Linear(num_class*6, self.num_class)
         )
         
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                conv_init(m)
-            elif isinstance(m, nn.Conv3d):
-                conv_init(m)
-            elif isinstance(m, nn.BatchNorm2d):
-                bn_init(m, 1)
-            elif isinstance(m, nn.BatchNorm3d):
-                bn_init(m, 1)
-            elif isinstance(m, nn.Linear):
-                fc_init(m)
+
+    def forward(self, input):
+        #N C T V M
+        input = input.permute(0,4,1,2,3).contiguous()
+        B, O, C, H, W = input.size()
+        input = input.view(B*O,C,H,W)
+        x_f_a,x_f_p = Get_fft(input)
         
-    def forward(self, x):
-        N, C, T, V, M = x.size() 
-        x = rearrange(x,'n c t v m -> n (c m v) t')
         
-        # if torch.isnan(x).any() or torch.isinf(x).any():
-        # pdb.set_trace()
-        _,c,t = x.shape
-        fpe = build_position_encoding(t,t)
-        pe = build_position_encoding(c,t)
+        out_base, output = self.model(input)
+        _,out_a = self.model_a(x_f_a)
+        _,out_p = self.model_p(x_f_p)
         
-        #N, 3*2*17, 300 (time or freq)
-        # x_f = torch.einsum('n c t,t f -> n c t f',x,fpe).sum(dim=-2)*pe
-        # pdb.set_trace()
-        x_f_a,x_f_p = Get_fft(x)
-        x_t = x
-        pdb.set_trace()
         
-        # x_f = self.Patchf(x_f)
-        # x_t = self.Patcht(x_t)
+        out_a = out_a.view(B,O,-1).mean(dim=1)
+        out_p = out_p.view(B,O,-1).mean(dim=1)
+        output = output.view(B,O,-1).mean(dim=1)
+        out = torch.cat([out_a,out_p,output],dim=1)
+        out = self.MLP(out)
         
-        # # N, 96, 20*17
-        # x_f = rearrange(x_f,'n c t v -> n c (t v)')
-        # x_t = rearrange(x_t,'n c t v -> n c (t v)')
-       
         
-        # x_f = x_f*pe
-        # x_t = x_t*pe
- 
-        for i in range(12):
-            # x = x.detach()
-            x_f, x_t = self.Trans[i](x_f, x_t)
-            x_f, x_t = self.VTrans[i](x_f, x_t)
-        pdb.set_trace()
-        # B, 96, 17*20
-        # N, 6*17, 300
-        x = torch.cat([x_f, x_t], dim=-1).flatten(1,2)
-        # x = (x ).sum(dim=1)
-        x = self.MLP(x)
+        return output
+    # def forward(self, x):
+    #     N, C, T, V, M = x.size() 
+    #     x = rearrange(x,'n c t v m -> (n m) c v t')
         
-        # pdb.set_trace()
+    #     # if torch.isnan(x).any() or torch.isinf(x).any():
+    #     # pdb.set_trace()
+    #     _,_,h,w = x.shape
         
-        # pdb.set_trace()
-        # for m in self.modules():
-        #     if isinstance(m, nn.Conv2d) or isinstance(m, nn.Conv3d):
-        #         pa = m.state_dict()
-        #         pa1 = pa['bias']
-        #         pa2 = pa['weight']
-        #         if torch.isnan(pa1).any() or torch.isnan(pa2).any():
-        #             pdb.set_trace()
-        return x
-# summary(Model(),(1,3,25,17,2))        
+    #     pe = build_position_encoding(h,w)
+        
+    #     #N, 3*2*17, 300 (time or freq)
+    #     # x_f = torch.einsum('n c t,t f -> n c t f',x,fpe).sum(dim=-2)*pe
+    #     # pdb.set_trace()
+    #     x_f_a,x_f_p = Get_fft(x)
+        
+        
+# summary(Model(),(1,3,300,17,2))        

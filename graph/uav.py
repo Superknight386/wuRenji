@@ -21,7 +21,7 @@ Joint sequence same as COCO format: {
     16: right_ankle
 }
 """
-
+from graph import tools
 import numpy as np
 
 num_node = 17
@@ -70,6 +70,9 @@ class Graph:
         self.inward = inward
         self.outward = outward
         self.neighbor = neighbor
+        self.A = self.get_adjacency_matrix(labeling_mode)
+        self.A_outward_binary = tools.get_adjacency_matrix(self.outward, self.num_node)
+        
 
     def get_adjacency_matrix(self, labeling_mode=None):
         if labeling_mode is None:
